@@ -111,8 +111,6 @@ if user_city in city_map:
     print(f"\nIelade sludinājumus no: {full_url}")
     response = requests.get(full_url, headers=headers)
 
-    ad_listings = soup.find_all("tr", id=lambda x: x and x.startswith("tr_"))
-    print(f"Atrastie sludinājumi: {len(ad_listings)+1}")
 
     workbook = xlsxwriter.Workbook('sludinajumi.xlsx')
     worksheet = workbook.add_worksheet()
@@ -163,11 +161,10 @@ if user_city in city_map:
                     print("------")
 
                     print("Ar kritērijiem sakrita "+str(matching)+"/"+str(len(ad_listings)+1))
-
-                    worksheet.write_row(row, 0, [location, room_info, size, price])
-                    print(f"{location} | {room_info} ist. | {size} m² | {price} €")
-                    row += 1
                     matching += 1
+                    worksheet.write_row(row, 0, [location, room_info, size, price])
+                    row += 1
+
 
                 except:
                     print("Kļūda:")
@@ -175,7 +172,7 @@ if user_city in city_map:
                 
         page += 1
 
-        workbook.close()
+    workbook.close()
     print("zbis sludinajumi")
 
 
