@@ -55,9 +55,11 @@ if user_city in city_map:
         user_district = input("\nIevadi rajonu no saraksta: ").strip().lower()
         if user_district == "visi":
             full_url = base_url + "all"
+            workbook = xlsxwriter.Workbook(user_city.replace(' ','-')+'-all.xlsx')
         elif user_district in districts:
             userdistrict = districts[user_district].replace(' ','-')
             full_url = base_url + districts[user_district]
+            workbook = xlsxwriter.Workbook(user_city.replace(' ','-')+"-"+user_district.replace(' ','-')+'.xlsx')
         else:
             print("Rajons nav atrasts.")
             exit()
@@ -65,6 +67,7 @@ if user_city in city_map:
     else:
         # Parastajām pilsētām nav rajonu
         full_url = base_url + city_map[user_city]
+        workbook = xlsxwriter.Workbook(user_city.replace(' ','-')+'.xlsx')
 
     # Filtru ievadīšana
 
@@ -115,14 +118,13 @@ if user_city in city_map:
     try:
        pages = int(input("Ievadi cik lapas nolasīt: "))
     except:
-       pages    = 0
+       pages = 0
 
     # -----
 
     print(f"\nIelade sludinājumus no: {full_url}")
     response = requests.get(full_url, headers=headers)
 
-    workbook = xlsxwriter.Workbook('sludinajumi.xlsx')
     worksheet = workbook.add_worksheet()
     worksheet.write_row(0, 0, ["Atrašanās vieta", "Istabas", "Platība", "Cena (€)"])
     row = 1
