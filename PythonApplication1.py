@@ -1,6 +1,5 @@
 import requests
 from bs4 import BeautifulSoup
-from selenium import webdriver
 
 headers = {
     'User-Agent': 'Mozilla/5.0'
@@ -17,7 +16,7 @@ soup = BeautifulSoup(response.content, 'html.parser')
 
 city_map = {}
 categories = soup.find_all('h4', class_='category')
-for cat in categories:
+for cat in categories:  
     link = cat.find('a', class_='a_category')
     if link:
         city_name = link.text.strip()
@@ -64,6 +63,46 @@ if user_city in city_map:
         # Parastajām pilsētām nav rajonu
         full_url = base_url + city_map[user_city]
 
+    # Filtru ievadīšana
+
+    #istabu skaits
+    try:
+        min_rooms = int(input("Ievadi minimālo istabu skaitu(1-6): "))
+    except:
+        min_rooms = None
+        print("Filtrs netiks ieskaitīts")
+    try:
+        max_rooms = int(input("Ievadi maksimālo istabu skaitu(1-6): "))
+    except:
+        max_rooms = None
+        print("Filtrs netiks ieskaitīts")
+
+    # platība
+    try:
+        min_size = float(input("Ievadi minimālo platību: "))
+    except:
+        min_size = None
+        print("Filtrs netiks ieskaitīts")
+    try:
+        max_size = float(input("Ievadi maksimālo platību: "))
+    except:
+        max_size = None
+        print("Filtrs netiks ieskaitīts")
+
+    # cena
+    try:
+        min_price = float(input("Ievadi minimālo cenu: "))
+    except:
+        min_price = None
+        print("Filtrs netiks ieskaitīts")
+    try:
+        max_price = float(input("Ievadi maksimālo cenu: "))
+    except:
+        max_price = None
+        print("Filtrs netiks ieskaitīts")
+
+    # -----
+
     print(f"\nIelade sludinājumus no: {full_url}")
     response = requests.get(full_url, headers=headers)
     soup = BeautifulSoup(response.content, 'html.parser')
@@ -75,9 +114,24 @@ if user_city in city_map:
         cells = ad.find_all('td')
         if len(cells) >= 5:
             location = cells[3].text.strip()
-            room_info = cells[4].text.strip()
-            size = cells[5].text.strip()
+            room_info = int(cells[4].text.strip())
+            # istabu skaits
+            if min_rooms == None or max_rooms == None:
+                continue
+            if room_info < min_rooms or room_info > max_rooms:
+                continue
+            # platiba
+            size = float(cells[5].text.strip())
+            if min_size == None or max_size == None:
+                continue
+            if size < min_size or size > max_size:
+                continue
+            #cena
             price = cells[-1].text.strip()
+            if min_price == None or max_price == None:
+                continue
+            if price < min_price or price > max_price:
+                continue
 
             print("Atrašanas vieta:", location)
             print("Istabas:", room_info)
