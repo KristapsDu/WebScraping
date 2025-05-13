@@ -1,5 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
+import xlsxwriter
 
 headers = {
     'User-Agent': 'Mozilla/5.0'
@@ -73,13 +74,13 @@ if user_city in city_map:
     except:
         min_rooms = 0
         print("Filtrs netiks ieskaitīts")
-        print()
     try:
         max_rooms = int(input("Ievadi maksimālo istabu skaitu(1-6): "))
     except:
         max_rooms = 6
         print("Filtrs netiks ieskaitīts")
-        print()
+
+    print()
 
     # platība
     try:
@@ -92,6 +93,8 @@ if user_city in city_map:
     except:
         max_size = 100000
         print("Filtrs netiks ieskaitīts")
+    
+    print()
 
     # cena
     try:
@@ -105,39 +108,79 @@ if user_city in city_map:
         max_price = 100000000
         print("Filtrs netiks ieskaitīts")
 
+    print()
+
+    # -----
+    # lapu skaits
+    try:
+       pages = int(input("Ievadi cik lapas nolasīt: "))
+    except:
+       pages    = 0
+
     # -----
 
     print(f"\nIelade sludinājumus no: {full_url}")
     response = requests.get(full_url, headers=headers)
-    soup = BeautifulSoup(response.content, 'html.parser')
 
-    ad_listings = soup.find_all("tr", id=lambda x: x and x.startswith("tr_"))
-    print(f"Atrastie sludinājumi: {len(ad_listings)+1}")
+    workbook = xlsxwriter.Workbook('sludinajumi.xlsx')
+    worksheet = workbook.add_worksheet()
+    worksheet.write_row(0, 0, ["Atrašanās vieta", "Istabas", "Platība", "Cena (€)"])
+    row = 1
 
     matching = 0
-    for ad in ad_listings:
-        cells = ad.find_all('td')
-        if len(cells) >= 5:
-            location = cells[3].text.strip()
-            room_info = int(cells[4].text.strip())
-            # istabu skaits
-            if room_info < min_rooms or room_info > max_rooms:
-                continue
-            # platiba
-            size = int(cells[5].text.strip())
-            if size < min_size or size > max_size:
-                continue
-            #cena
-            price = int(cells[-1].text.strip().replace("  €","").replace(",",""))
-            if price < min_price or price > max_price:
-                continue
 
-            print("Atrašanas vieta:", location)
-            print("Istabas:", room_info)
-            print("Platība:", size, "m2")
-            print("Cena:", price,"€")
-            print("------")
-            matching += 1
+    currentpage = 1
+    while currentpage <= pages:
+        if currentpage == 1:
+            url = full_url
+        else:
+            url = full_url.rstrip("/") + f"/page{currentpage}.html"
+
+        print(f"\n ielade: {url}")
+        response = requests.get(url, headers=headers)
+
+        if response.url != url:
+            print(f"\n Pieejamas tikai {currentpage-1} lapas")
+            break
+
+        soup = BeautifulSoup(response.content, 'html.parser')
+        ad_listings = soup.find_all("tr", id=lambda x: x and x.startswith("tr_"))
+
+        for ad in ad_listings:
+            cells = ad.find_all('td')
+            if len(cells) >= 5:
+                try:
+                    location = cells[3].text.strip()
+                    room_info = int(cells[4].text.strip())
+                    # istabu skaits
+                    if room_info < min_rooms or room_info > max_rooms:
+                        continue
+                    # platiba
+                    size = int(cells[5].text.strip())
+                    if size < min_size or size > max_size:
+                        continue
+                    #cena
+                    price = int(cells[-1].text.strip().replace("  €","").replace(",",""))
+                    if price < min_price or price > max_price:
+                        continue
+
+                    print("Atrašanas vieta:", location)
+                    print("Istabas:", room_info)
+                    print("Platība:", size, "m2")
+                    print("Cena:", price,"€")
+                    print("------")
+
+                    matching += 1
+                    worksheet.write_row(row, 0, [location, room_info, size, price])
+                    row += 1
+
+                except:
+                    print("Kļūda:")
+                    continue
+
+        currentpage +=1
+
+    workbook.close()
     print("Ar kritērijiem sakrita "+str(matching)+"/"+str(len(ad_listings)+1))
 
 else:
