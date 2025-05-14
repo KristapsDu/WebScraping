@@ -1,5 +1,5 @@
 # WebScraping projekts
-Autori: Kristaps Duļbinskis 241RDB253 un _ _ _
+Autori: Kristaps Duļbinskis 241RDB253 un Kārlis Zvirbulis 241RDB082
 
 ## Projekta uzdevums
 Projekta uzdevums ir nolasīt un saglabāt nekustamā īpašuma pārdošanas sludinājumus no mājaslapas ss.lv. Ar kodu ir iespējams atrast dzīvokļu, privātmāju un lauku viensētu sludinājumus.
