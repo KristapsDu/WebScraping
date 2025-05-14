@@ -28,14 +28,14 @@ Pēc īpasuma veids ir izvēlēts, nepieciešams izvēlēties pilsētu kā arī 
 Būs iespēja izvēlēties maksimālās un minimālās vērtības intervāliem, pēc kuriem saglabās sludinājumu datus. Atkarībā no kuru īpašuma izvēlējaties sākuma, būs pieejami atšķirīgi kritērīji. No ievadītajām vērtībām tiks reģistrēti tikai skaitļi. Ievadot burtus vai tukšumu vērtību vietā iestatīs kā to noklusējuma vērtības.
 
 ### Noklusējumu vērtības:
-Minimālais istabu skaits - 0  
-Maksimālais istabu skaits - 10  
-Minimālais stāvu skaits - 0  
-Maksimālais stāvu skaits - 10  
-Minimālā platība - 0  
-Maksimālā platība - 100,000 m2  
-Minimālā cena - 0  
-Maksimālā cena - 100,000,000 €  
+ - Minimālais istabu skaits - 0  
+ - Maksimālais istabu skaits - 10  
+ - Minimālais stāvu skaits - 0  
+ - Maksimālais stāvu skaits - 10  
+ - Minimālā platība - 0  
+ - Maksimālā platība - 100,000 m2  
+ - Minimālā cena - 0  
+ - Maksimālā cena - 100,000,000 €  
 
 Pēc kritēriju noteikšanai, ir jaizvēlas cik lapas, ja iespējams, it janolasa. Nolasīto lapu noklusējuma vērtība ir <ins>1 lapa</ins>.
 Nolasītie sludinājumi, kas atbilst visiem noteiktajiem kritērijiem, tiks izvadīti un saglabāti .xlsx failā <ins>tajā pašā adresē, kur programmatūras fails atrodas</ins>.
