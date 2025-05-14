@@ -124,10 +124,11 @@ if user_city in city_map:
             min_floors = 0
             print("Filtrs netiks ieskaitīts")
         try:
-            pass
+            max_floors = int(input("Ievadi maksimālo stāvu skaitu: "))
         except:
             max_floors = 10
             print("Filtrs netiks ieskaitīts")
+        print()
 
     # platība
     try:
