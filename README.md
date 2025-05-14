@@ -23,8 +23,8 @@ Pirms programmas palaišanas ir nepieciešams, ka lietojat vismaz Python 3.10 un
 
 Lietojot programmatūru, ierakstot kādu piedāvāto izvēli, nav obligāti jaievēro lielie burti. Jaievada pilns teksts, ievērojot garumzīmes, atstarpes un punktus.
 
-Ieslēdzot programmu, būs pieejamas 3 īpašumu izvēles: Dzīvokļi, mājas un vasarnīcas un lauku viensētas.
-Pēc īpasuma veids ir izvēlēts, nepieciešams izvēlēties pilsētu kā arī kādu no tās rajoniem, ja tie parādās pēc pilsētas izvēles veikšanas.
+Ieslēdzot programmu, būs pieejamas 3 īpašumu izvēles: Dzīvokļi, mājas un vasarnīcas un lauku viensētas.  
+Pēc īpasuma veids ir izvēlēts, nepieciešams izvēlēties pilsētu kā arī kādu no tās rajoniem, ja tie parādās pēc pilsētas izvēles veikšanas.  
 Būs iespēja izvēlēties maksimālās un minimālās vērtības intervāliem, pēc kuriem saglabās sludinājumu datus. Atkarībā no kuru īpašuma izvēlējaties sākuma, būs pieejami atšķirīgi kritērīji. No ievadītajām vērtībām tiks reģistrēti tikai skaitļi. Ievadot burtus vai tukšumu vērtību vietā iestatīs kā to noklusējuma vērtības.
 
 ### Noklusējumu vērtības:
