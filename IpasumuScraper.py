@@ -232,7 +232,7 @@ if user_city in city_map:
                         print("Kļūda:")
                         continue
         
-            print("Ar kritērijiem sakrita "+str(matching-2)+"/"+str(len(ad_listings)+1))
+            print("Ar kritērijiem sakrita "+str(matching)+"/"+str(len(ad_listings)-1))
             currentpage +=1
             matching = 0
         elif category == "homes":
@@ -270,7 +270,7 @@ if user_city in city_map:
                         print("Kļūda:")
                         continue
         
-            print("Ar kritērijiem sakrita "+str(matching-2)+"/"+str(len(ad_listings)+1))
+            print("Ar kritērijiem sakrita "+str(matching)+"/"+str(len(ad_listings)-1))
             currentpage +=1
             matching = 0
         else:
@@ -304,7 +304,7 @@ if user_city in city_map:
                         print("Kļūda:")
                         continue
         
-            print("Ar kritērijiem sakrita "+str(matching-2)+"/"+str(len(ad_listings)+1))
+            print("Ar kritērijiem sakrita "+str(matching)+"/"+str(len(ad_listings)-1))
             currentpage +=1
             matching = 0
 
