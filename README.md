@@ -41,4 +41,4 @@ Pēc kritēriju noteikšanai, ir jaizvēlas cik lapas, ja iespējams, it janolas
 Nolasītie sludinājumi, kas atbilst visiem noteiktajiem kritērijiem, tiks izvadīti un saglabāti .xlsx failā <ins>tajā pašā adresē, kur programmatūras fails atrodas</ins>.
 
 ### Lietošanas video piemērs
-[![Video](https://i9.ytimg.com/vi/TQr379_-4nE/mqdefault.jpg?sqp=CJDWj8EG-oaymwEmCMACELQB8quKqQMa8AEB-AH-CYAC0AWKAgwIABABGGUgXCguMA8=&rs=AOn4CLBPG8CfX7BgWe-Itn_AzBpQBIYD8A)](https://youtu.be/TQr379_-4nE)
+[![Video](https://i9.ytimg.com/vi/TQr379_-4nE/mqdefault.jpg?sqp=COS0kcEG-oaymwEmCMACELQB8quKqQMa8AEB-AH-CYAC0AWKAgwIABABGGUgXCguMA8=&rs=AOn4CLALA8Q10wN3xs1ues9mNz99ZARAFQ)](https://youtu.be/TQr379_-4nE)
