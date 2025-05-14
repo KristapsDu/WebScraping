@@ -110,7 +110,7 @@ if user_city in city_map:
             min_rooms = 0
             print("Filtrs netiks ieskaitīts")
         try:
-            min_rooms = int(input("Ievadi maksimālo istabu skaitu(1-6): "))
+            max_rooms = int(input("Ievadi maksimālo istabu skaitu(1-6): "))
         except:
             max_rooms = 10
             print("Filtrs netiks ieskaitīts")
