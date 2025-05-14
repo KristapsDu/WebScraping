@@ -27,7 +27,9 @@ match category.lower():
         main_url = f'{base_url}/lv/real-estate/farms-estates/sell/'
         category = "farms"
     case _:
+        main_url = ""
         print("Nav tāds īpašuma tips")
+        exit()
 
 # Nosakām pilsētas ar rajoniem
 if category == "flats":
@@ -230,7 +232,7 @@ if user_city in city_map:
                         print("Kļūda:")
                         continue
         
-            print("Ar kritērijiem sakrita "+str(matching)+"/"+str(len(ad_listings)+1))
+            print("Ar kritērijiem sakrita "+str(matching-2)+"/"+str(len(ad_listings)+1))
             currentpage +=1
             matching = 0
         elif category == "homes":
@@ -268,7 +270,7 @@ if user_city in city_map:
                         print("Kļūda:")
                         continue
         
-            print("Ar kritērijiem sakrita "+str(matching)+"/"+str(len(ad_listings)+1))
+            print("Ar kritērijiem sakrita "+str(matching-2)+"/"+str(len(ad_listings)+1))
             currentpage +=1
             matching = 0
         else:
@@ -302,7 +304,7 @@ if user_city in city_map:
                         print("Kļūda:")
                         continue
         
-            print("Ar kritērijiem sakrita "+str(matching)+"/"+str(len(ad_listings)+1))
+            print("Ar kritērijiem sakrita "+str(matching-2)+"/"+str(len(ad_listings)+1))
             currentpage +=1
             matching = 0
 
