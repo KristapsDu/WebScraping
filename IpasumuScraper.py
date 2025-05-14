@@ -172,7 +172,10 @@ if user_city in city_map:
     response = requests.get(full_url, headers=headers)
 
     worksheet = workbook.add_worksheet()
-    worksheet.write_row(0, 0, ["Atrašanās vieta", "Istabas", "Platība", "Cena (€)"])
+    if category == "flats":
+        worksheet.write_row(0, 0, ["Atrašanās vieta", "Istabas", "Platība", "Cena (€)"])
+    else:
+        worksheet.write_row(0, 0, ["Atrašanās vieta", "Stāvi", "Platība", "Cena (€)"])
     row = 1
 
     matching = 0
@@ -195,11 +198,6 @@ if user_city in city_map:
         ad_listings = soup.find_all("tr", id=lambda x: x and x.startswith("tr_"))
 
         if category == "flats":
-            # izveido tabulu
-            worksheet = workbook.add_worksheet()
-            worksheet.write_row(0, 0, ["Atrašanās vieta", "Istabas", "Platība", "Cena (€)"])
-            row = 1
-
             for ad in ad_listings:
                 cells = ad.find_all('td')
                 if len(cells) >= 5:
@@ -236,11 +234,6 @@ if user_city in city_map:
             currentpage +=1
             matching = 0
         elif category == "homes":
-            # izveido tabulu
-            worksheet = workbook.add_worksheet()
-            worksheet.write_row(0, 0, ["Atrašanās vieta", "Stāvi", "Platība", "Cena (€)"])
-            row = 1
-
             for ad in ad_listings:
                 cells = ad.find_all('td')
                 if len(cells) >= 5:
@@ -279,11 +272,6 @@ if user_city in city_map:
             currentpage +=1
             matching = 0
         else:
-            # izveido tabulu
-            worksheet = workbook.add_worksheet()
-            worksheet.write_row(0, 0, ["Atrašanās vieta", "Stāvi", "Platība", "Cena (€)"])
-            row = 1
-
             for ad in ad_listings:
                 cells = ad.find_all('td')
                 if len(cells) >= 5:
